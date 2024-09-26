@@ -7,8 +7,12 @@ public class FriendlyRobot : MonoBehaviour
 {
     public NavMeshAgent agent;
     private RobotState currentState;
+    private bool isActive = true;    
+
     public Transform attachPoint;
     public GameObject attachedObject;
+
+    public Transform completionPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -33,5 +37,20 @@ public class FriendlyRobot : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         currentState.OnCollisionEnter(other);
+    }
+
+    public void SetActivity(bool activity)
+    {
+        isActive = activity;
+
+        if (!isActive)
+        {
+            ChangeState(new RobotDeactivatedState(this));
+        }
+    }
+
+    public bool GetActivity()
+    {
+        return isActive;
     }
 }

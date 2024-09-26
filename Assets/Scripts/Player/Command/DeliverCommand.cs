@@ -24,10 +24,11 @@ public class DeliverCommand : Command
 
     public bool DeliveryComplete()
     {
-        if (agent.remainingDistance > 1f)
-        {
-            return false;
-        }
+        
+        //Checks distance from agent and closest reachable point
+        if (agent.remainingDistance > 0.25f) return false;
+        //Checks distance between Delivery Zone and agent
+        if (Vector3.Distance(agent.transform.position, deliveryZone.transform.position) > 2) return true;
 
         if(deliveryZone != null && objToDeliver != null)
         {

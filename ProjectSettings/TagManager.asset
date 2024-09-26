@@ -9,6 +9,7 @@ TagManager:
   - Builder
   - Bullet
   - RobotPickable
+  - RobotDelivery
   layers:
   - Default
   - TransparentFX

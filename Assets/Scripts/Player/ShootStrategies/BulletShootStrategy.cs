@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class BulletShootStrategy : IShootStrategy
 {
-    ShootInteractor interactor;
+    EquipInteractor interactor;
     Transform shootPoint;
 
-    public BulletShootStrategy (ShootInteractor _interactor)
+    public BulletShootStrategy (EquipInteractor _interactor)
     {
         Debug.Log("switched to bullet mode");
         this.interactor = _interactor;
         shootPoint = interactor.GetShootPoint();
-
-        //Change colour of the gun
-        interactor.gunRenderer.material.color = interactor.bulletColour;
+        
+        //Equip gun
+        interactor.gun.SetActive(true);
     }
 
     public void Shoot()

@@ -3,18 +3,16 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ShootInteractor : Interactor
+public class EquipInteractor : Interactor
 {
-    
+    [Header("Equipment")]
+    public GameObject gun;
+    public GameObject commandWand;
 
-    [Header("Gun")]
-    public MeshRenderer gunRenderer;
-    public Color bulletColour;
-    public Color rocketColour;
+    private List<GameObject> acquiredItems;
 
     [Header("Shoot")]
     public ObjectPool bulletPool;
-    public ObjectPool rocketPool;
 
     [SerializeField] private float shootForce;
     [SerializeField] private Transform shootPoint;
@@ -23,21 +21,27 @@ public class ShootInteractor : Interactor
     private float finalShootVelocity;
     private IShootStrategy currentShootStrategy;
 
+    [Header("Command")]
+    public RobotCommand robotCommand;
+
     public override void Interact()
     {
         if (currentShootStrategy == null)
         {
-            currentShootStrategy = new BulletShootStrategy(this);
+            UnequipAllItems();
+            currentShootStrategy = new NoEquipStrategy(this);
         }
 
-        if (input.weapon1pressed)
+        if (input.weapon1pressed && gun != null)
         {
+            UnequipAllItems();
             currentShootStrategy = new BulletShootStrategy(this);
         }
 
         if (input.weapon2pressed)
         {
-            currentShootStrategy = new RocketShootStrategy(this);
+            UnequipAllItems();
+            currentShootStrategy = new CommandStrategy(this, robotCommand);
         }
 
         //Shoot strategy
@@ -47,27 +51,17 @@ public class ShootInteractor : Interactor
         }
     }
 
-
-
-    /*void Shoot()
+    public void AssignGun(GameObject gun)
     {
-        finalShootVelocity = moveBehaviour.GetForwardSpeed() + shootForce;
+        this.gun = gun;
+        acquiredItems.Add(gun);
+    }
 
-        PooledObjects pooledObj = objPool.GetPooledObjects();
-        pooledObj.gameObject.SetActive(true);
-
-        //Rigidbody bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
-        Rigidbody bullet = pooledObj.GetComponent<Rigidbody>();
-
-        bullet.transform.position = shootPoint.position;
-        bullet.transform.rotation = shootPoint.rotation;
-
-        bullet.velocity = shootPoint.forward * finalShootVelocity;
-        
-        //Destroy(bullet.gameObject, 5f);
-
-        objPool.DestroyPooledObjects(pooledObj, 5);
-    }*/
+    public void AssignWand(GameObject wand)
+    {
+        this.commandWand = wand;
+        acquiredItems.Add(wand);
+    }
 
     public Transform GetShootPoint()
     {
@@ -78,5 +72,16 @@ public class ShootInteractor : Interactor
     {
         finalShootVelocity = moveBehaviour.GetForwardSpeed() + shootForce;
         return finalShootVelocity;
+    }
+
+    private void UnequipAllItems()
+    {
+        if(acquiredItems.Count > 0)
+        {
+            foreach(var item in acquiredItems)
+            {
+                item.SetActive(false);
+            }
+        }
     }
 }

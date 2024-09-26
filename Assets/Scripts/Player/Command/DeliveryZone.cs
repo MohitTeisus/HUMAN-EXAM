@@ -2,31 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DeliveryZone : MonoBehaviour
 {
     public Transform[] deliveryPoints;
     public List<GameObject> deliveredObjects = new List<GameObject>();
-    private GameObject deliveredItem;
+    private GameObject lastDeliveredItem;
+
+    public UnityEvent deliveryFulfilled; 
 
     public int spacesFilled = 0;
 
-
-    private void Update()
+    private void Start()
     {
-        //Debug.Log("List = " + deliveredObjects.Count);
+        spacesFilled = deliveredObjects.Count;
     }
+
     public void Deliver(GameObject objToDeliver)
     {
         if (objToDeliver == null) return;
         if (spacesFilled > deliveryPoints.Length) return;
-        if (deliveredObjects.Contains(deliveredItem)) return;
+        lastDeliveredItem = objToDeliver;
 
-        deliveredItem = objToDeliver;
-        deliveredItem.transform.position = deliveryPoints[spacesFilled].position;
-        deliveredItem.transform.parent = deliveryPoints[spacesFilled];
+        if (deliveredObjects.Contains(lastDeliveredItem)) return;
+
+        lastDeliveredItem.transform.position = deliveryPoints[spacesFilled].position;
+        lastDeliveredItem.transform.rotation = deliveryPoints[spacesFilled].rotation;
+        lastDeliveredItem.transform.parent = deliveryPoints[spacesFilled];
+        lastDeliveredItem.GetComponent<Collider>().enabled = false;
+
         spacesFilled++;
-        deliveredItem.GetComponent<Collider>().enabled = false;
-        deliveredObjects.Add(deliveredItem);
+        deliveredObjects.Add(lastDeliveredItem);
+
+        if(spacesFilled == deliveryPoints.Length)
+        {
+            deliveryFulfilled?.Invoke();
+        }
     }
 }

@@ -12,11 +12,14 @@ public class MoveableScreen : MonoBehaviour
     [SerializeField] private float horizontalDistance;
     [SerializeField] private float verticalDistance;
     private float timer;
+    [SerializeField] private bool isOpen;
 
     private void Start()
     {
        startPoint = transform.position;
        endPoint = transform.position + new Vector3(horizontalDistance, verticalDistance, 0);
+
+       StartCoroutine(MoveScreen(isOpen));
     }
 
     IEnumerator MoveScreen(bool open)
@@ -40,9 +43,17 @@ public class MoveableScreen : MonoBehaviour
         timer = 1;
     }
 
+    public void StartMoveScreen()
+    {
+        isOpen = !isOpen;
+        StopAllCoroutines();
+        StartCoroutine(MoveScreen(isOpen));
+    }
+
     public void StartMoveScreen(bool open)
     {
+        isOpen = open;
         StopAllCoroutines();
-        StartCoroutine(MoveScreen(open));  
+        StartCoroutine(MoveScreen(isOpen));  
     }
 }

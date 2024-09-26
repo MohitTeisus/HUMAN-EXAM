@@ -239,3 +239,4 @@ MonoBehaviour:
   agent: {fileID: 6295659294668548409}
   attachPoint: {fileID: 3982765887649099774}
   attachedObject: {fileID: 0}
+  completionPoint: {fileID: 0}

@@ -6,7 +6,6 @@ using UnityEngine.AI;
 
 public class MoveCommand : Command
 {
-    private NavMeshAgent agent;
     private Vector3 destination;
 
     public MoveCommand(NavMeshAgent _agent, Vector3 _destination) : base(_agent)

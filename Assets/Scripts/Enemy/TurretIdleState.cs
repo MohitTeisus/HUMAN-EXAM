@@ -23,7 +23,7 @@ public class TurretIdleState : TurretState
 
     public override void OnStateUpdate()
     {
-        if (Physics.Raycast(turret.turretGun.position, turret.transform.forward, out RaycastHit hit, turret.playerCheckDistance))
+        if (Physics.SphereCast(turret.turretGun.position, turret.checkRadius, turret.transform.forward, out RaycastHit hit, turret.playerCheckDistance))
         {
             if (hit.transform.CompareTag("Player"))
             {
@@ -32,7 +32,7 @@ public class TurretIdleState : TurretState
             }
             else
             {
-                turret.DrawLaser(hit.transform.position);
+                turret.DrawLaser(hit.point);
             }
         }
         else

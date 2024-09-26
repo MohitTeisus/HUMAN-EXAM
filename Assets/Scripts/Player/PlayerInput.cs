@@ -28,6 +28,8 @@ public class PlayerInput : MonoBehaviour
 
     public bool weapon2pressed { get; private set; }
 
+    public bool weapon3pressed { get; private set; }
+
     public bool commandPressed { get; private set; }
 
     private bool clear;
@@ -80,6 +82,7 @@ public class PlayerInput : MonoBehaviour
 
         weapon1pressed = weapon1pressed || Input.GetKeyDown(KeyCode.Alpha1);
         weapon2pressed = weapon2pressed || Input.GetKeyDown(KeyCode.Alpha2);
+        weapon3pressed = weapon3pressed || Input.GetKeyDown(KeyCode.Alpha3);
 
         commandPressed = commandPressed || Input.GetKeyDown(KeyCode.Q);
     }
@@ -108,6 +111,7 @@ public class PlayerInput : MonoBehaviour
         
         weapon1pressed = false;
         weapon2pressed = false; 
+        weapon3pressed = false;
 
         commandPressed = false;
     }

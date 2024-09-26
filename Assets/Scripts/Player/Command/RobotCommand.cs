@@ -59,6 +59,12 @@ public class RobotCommand : MonoBehaviour
         currentCommand.Execute();
     }
 
+    public void RemoveRobot()
+    {
+        if (robot == null) return;
+        robot = null;   
+    }
+
     public void AssignRobot(FriendlyRobot _robot)
     {
         robot = _robot;

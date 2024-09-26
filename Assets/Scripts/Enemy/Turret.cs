@@ -8,7 +8,7 @@ public class Turret : MonoBehaviour
 
     public Transform turretGun;
     public float playerCheckDistance;
-
+    public float checkRadius;
     public float damagePerSecond = 25;
     [HideInInspector] public Transform player;
     [SerializeField] private LineRenderer lineRenderer;
@@ -45,8 +45,8 @@ public class Turret : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(turretGun.position, .3f);
-        Gizmos.DrawWireSphere(turretGun.position + turretGun.forward * playerCheckDistance, .3f);
+        Gizmos.DrawWireSphere(turretGun.position, checkRadius);
+        Gizmos.DrawWireSphere(turretGun.position + turretGun.forward * playerCheckDistance, checkRadius);
 
         Gizmos.DrawLine(turretGun.position, turretGun.position + turretGun.forward * playerCheckDistance);
     }

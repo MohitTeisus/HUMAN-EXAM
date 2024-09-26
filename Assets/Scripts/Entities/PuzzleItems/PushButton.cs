@@ -11,18 +11,18 @@ public class PushButton : MonoBehaviour, ISelectable
 
     public UnityEvent onPush;
     
-    public UnityEvent onHoverEnter, onHoverExit;
+    //public UnityEvent onHoverEnter, onHoverExit;
 
     public void OnHoverEnter()
     {
         buttonRenderer.material = hoverColour;
-        onHoverEnter?.Invoke();
+        //onHoverEnter?.Invoke();
     }
 
     public void OnHoverExit()
     {
         buttonRenderer.material = defaultColour;
-        onHoverExit?.Invoke();
+        //onHoverExit?.Invoke();
     }
 
     public void OnSelect()

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletShootStrategy : IShootStrategy
+public class BulletShootStrategy : IEquipStrategy
 {
     EquipInteractor interactor;
     Transform shootPoint;
@@ -17,7 +17,7 @@ public class BulletShootStrategy : IShootStrategy
         interactor.gun.SetActive(true);
     }
 
-    public void Shoot()
+    public void UseEquipment()
     {
         PooledObjects pooledObj = interactor.bulletPool.GetPooledObjects();
         pooledObj.gameObject.SetActive(true);

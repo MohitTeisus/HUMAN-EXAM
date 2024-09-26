@@ -24,10 +24,10 @@ public class TurretAttackState : TurretState
 
     public override void OnStateUpdate()
     {
-        if (Physics.Raycast(turret.turretGun.position, turret.transform.forward, out RaycastHit hit, turret.playerCheckDistance) && hit.transform.CompareTag("Player"))
+        if (Physics.SphereCast(turret.turretGun.position, turret.checkRadius, turret.transform.forward, out RaycastHit hit, turret.playerCheckDistance) && hit.transform.CompareTag("Player"))
         {
             Attack();
-            turret.DrawLaser(turret.player.position);
+            turret.DrawLaser(hit.point);
         }
         else
         {

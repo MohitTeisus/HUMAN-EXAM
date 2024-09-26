@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class EquipInteractor : Interactor
 {
     [Header("Equipment")]
+    public GameObject hand;
     public GameObject gun;
     public GameObject commandWand;
 
-    private List<GameObject> acquiredItems;
+    [SerializeField] private List<GameObject> acquiredItems = new List<GameObject>();
 
     [Header("Shoot")]
     public ObjectPool bulletPool;
@@ -19,35 +21,19 @@ public class EquipInteractor : Interactor
     [SerializeField] private PlayerMoveBehaviour moveBehaviour;
 
     private float finalShootVelocity;
-    private IShootStrategy currentShootStrategy;
+    private IEquipStrategy currentEquipStrategy;
 
     [Header("Command")]
     public RobotCommand robotCommand;
 
     public override void Interact()
     {
-        if (currentShootStrategy == null)
-        {
-            UnequipAllItems();
-            currentShootStrategy = new NoEquipStrategy(this);
-        }
-
-        if (input.weapon1pressed && gun != null)
-        {
-            UnequipAllItems();
-            currentShootStrategy = new BulletShootStrategy(this);
-        }
-
-        if (input.weapon2pressed)
-        {
-            UnequipAllItems();
-            currentShootStrategy = new CommandStrategy(this, robotCommand);
-        }
+        ChangeStrategy();
 
         //Shoot strategy
         if (input.primaryShootPressed)
         {
-            currentShootStrategy.Shoot();
+            currentEquipStrategy.UseEquipment();
         }
     }
 
@@ -61,6 +47,34 @@ public class EquipInteractor : Interactor
     {
         this.commandWand = wand;
         acquiredItems.Add(wand);
+    }
+
+    private void ChangeStrategy()
+    {
+        if (currentEquipStrategy == null)
+        {
+            UnequipAllItems();
+            acquiredItems.Add(hand);
+            currentEquipStrategy = new NoEquipStrategy(this);
+        }
+
+        if (input.weapon1pressed && gun != null)
+        {
+            UnequipAllItems();
+            currentEquipStrategy = new BulletShootStrategy(this);
+        }
+
+        if (input.weapon2pressed && commandWand != null)
+        {
+            UnequipAllItems();
+            currentEquipStrategy = new CommandStrategy(this, robotCommand);
+        }
+
+        if (input.weapon3pressed && hand != null)
+        {
+            UnequipAllItems();
+            currentEquipStrategy = new NoEquipStrategy(this);
+        }
     }
 
     public Transform GetShootPoint()

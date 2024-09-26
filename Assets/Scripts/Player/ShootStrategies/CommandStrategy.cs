@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CommandStrategy : IShootStrategy
+public class CommandStrategy : IEquipStrategy
 {
     EquipInteractor interactor;
     RobotCommand robotCommand;
@@ -10,10 +10,11 @@ public class CommandStrategy : IShootStrategy
     public CommandStrategy(EquipInteractor interactor, RobotCommand rCommand)
     {
         this.interactor = interactor;
+        this.robotCommand = rCommand;
         interactor.commandWand.SetActive(true);
     }
 
-    public void Shoot()
+    public void UseEquipment()
     {
         robotCommand.Command();
     }

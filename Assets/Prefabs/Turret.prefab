@@ -48,7 +48,7 @@ MonoBehaviour:
   turretGun: {fileID: 7330235481199383336}
   playerCheckDistance: 10
   checkRadius: 0.5
-  damagePerSecond: 150
+  damagePerSecond: 200
   player: {fileID: 0}
   lineRenderer: {fileID: 4873596172316152579}
 --- !u!120 &4873596172316152579

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5032293464177950814}
   - component: {fileID: 7075924087478432916}
   - component: {fileID: 5868229656880772737}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: KeyRobot
   m_TagString: RobotPickable
   m_Icon: {fileID: 0}

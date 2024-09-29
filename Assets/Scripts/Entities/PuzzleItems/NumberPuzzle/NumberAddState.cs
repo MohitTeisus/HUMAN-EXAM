@@ -14,7 +14,7 @@ public class NumberAddState : NumberState
     public override float CompleteEquation()
     {
         sum = currentFullValue + buttonValue;
-        numberButton.DisableButton(sum);
+        numberButton.DisableButton();
         return sum;
     }
 

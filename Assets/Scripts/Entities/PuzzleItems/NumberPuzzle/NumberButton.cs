@@ -7,7 +7,7 @@ public class NumberButton : MonoBehaviour, ISelectable
 {
     [SerializeField]float value;
     [HideInInspector] public float currentValue;
-    [SerializeField] NumberPuzzleManager manager;
+    [SerializeField] NumberPuzzle manager;
 
     [Header("Visuals")]
     public MeshRenderer meshRenderer;
@@ -50,9 +50,9 @@ public class NumberButton : MonoBehaviour, ISelectable
         currentState.OnStateEnter();
     }
 
-    public void DisableButton(float _currentValue)
+    public void DisableButton()
     {
-        currentState = new NumberDisabledState(value, _currentValue, this);
+        currentState = new NumberDisabledState(value, 0, this);
         currentState.OnStateEnter();
     }
 

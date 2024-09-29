@@ -6,13 +6,13 @@ using UnityEngine.Events;
 
 public class DeliveryZone : MonoBehaviour
 {
-    public Transform[] deliveryPoints;
-    public List<GameObject> deliveredObjects = new List<GameObject>();
+    [SerializeField] private Transform[] deliveryPoints;
+    private List<GameObject> deliveredObjects = new List<GameObject>();
     private GameObject lastDeliveredItem;
 
     public UnityEvent deliveryFulfilled; 
 
-    public int spacesFilled = 0;
+    private int spacesFilled = 0;
 
     private void Start()
     {
@@ -23,6 +23,7 @@ public class DeliveryZone : MonoBehaviour
     {
         if (objToDeliver == null) return;
         if (spacesFilled > deliveryPoints.Length) return;
+
         lastDeliveredItem = objToDeliver;
 
         if (deliveredObjects.Contains(lastDeliveredItem)) return;

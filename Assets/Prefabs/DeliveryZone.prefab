@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7033466927664218490}
   - component: {fileID: 7042983900026434065}
   - component: {fileID: 1287052929026882817}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 7771973433998362876}
   - component: {fileID: 2401912217179801481}
   - component: {fileID: 3532397870669090513}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: DeliveryZone
   m_TagString: RobotDelivery
   m_Icon: {fileID: 0}
@@ -385,7 +385,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3874471502219164669}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: DeliveryPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -416,7 +416,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6454505720000496684}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: DeliveryPoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -447,7 +447,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3178199685454011858}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: DeliveryPoint3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

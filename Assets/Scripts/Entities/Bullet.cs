@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private PooledObjects pooledOBJ;
+    [SerializeField] private float damage;
 
     private void OnCollisionEnter(Collision other)
     {
@@ -12,10 +13,15 @@ public class Bullet : MonoBehaviour
         pooledOBJ.Destroy(1f);
 
         IDestroyable destroyable = other.gameObject.GetComponent<IDestroyable>();
-        
         if ( destroyable != null)
         {
             destroyable.OnCollided();
+        }
+
+        IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
+        if ( damageable != null )
+        {
+            damageable.GetDamage(damage);
         }
     }
 

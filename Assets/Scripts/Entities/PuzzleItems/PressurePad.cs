@@ -9,8 +9,10 @@ public class PressurePad : MonoBehaviour
     [SerializeField] private float checkRadius;
     [SerializeField] private LayerMask pickupLayer;
 
-    public UnityEvent OnCubePlaced;
-    public UnityEvent OnCubeRemoved;
+    public UnityEvent OnObjectPlaced;
+    public UnityEvent OnObjectRemoved;
+
+    public string objectTag;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -20,9 +22,9 @@ public class PressurePad : MonoBehaviour
         {
             Debug.Log("Collider in contact = " + collider.gameObject.name);
 
-            if (collider.CompareTag("PickCube"))
+            if (collider.CompareTag(objectTag))
             {
-                OnCubePlaced?.Invoke();
+                OnObjectPlaced?.Invoke();
                 break;
             }
         }
@@ -30,9 +32,9 @@ public class PressurePad : MonoBehaviour
 
     private void OnTriggerExit(Collider collision)
     {
-        if (collision.gameObject.CompareTag("PickCube"))
+        if (collision.gameObject.CompareTag(objectTag))
         {
-            OnCubeRemoved?.Invoke();
+            OnObjectRemoved?.Invoke();
         }
     }
 

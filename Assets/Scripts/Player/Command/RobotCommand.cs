@@ -61,6 +61,10 @@ public class RobotCommand : MonoBehaviour
 
     public void RemoveRobot()
     {
+        commands.Clear();
+        currentCommand = null;
+
+        Debug.Log("After clear = " + commands.Count);
         if (robot == null) return;
         robot = null;   
     }

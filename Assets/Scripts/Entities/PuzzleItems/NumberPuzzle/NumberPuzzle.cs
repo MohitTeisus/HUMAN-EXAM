@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class NumberPuzzleManager : MonoBehaviour
+public class NumberPuzzle : MonoBehaviour
 {
     [Header("Visuals")]
     [SerializeField] TextMeshPro solutionText;
@@ -17,9 +17,7 @@ public class NumberPuzzleManager : MonoBehaviour
     private float solution;
     public float currentValue;
 
-    private bool isSolved;
-
-    [SerializeField] private NumberButton[] numberButtons;
+    [SerializeField] private NumberButtonManager nbManager;
 
     public Action<float> processEquation;
     public UnityEvent puzzleComplete;
@@ -45,32 +43,15 @@ public class NumberPuzzleManager : MonoBehaviour
 
         if (currentValue == solution)
         {
-            isSolved = true;
-            DisableAllButtons();
+            nbManager.DisableAllButtons();
             puzzleComplete?.Invoke();
         }
         else
         {
-            ChangeButtonStates();
+            nbManager.UpdateCurrentValue(currentValue);
+            nbManager.ChangeButtonStates();
         }
         Debug.Log("current value = " + currentValue);
-    }
-
-    private void ChangeButtonStates()
-    {
-        foreach(NumberButton button in numberButtons)
-        {
-            button.UpdateCurrentValue(currentValue);
-            button.ExitCurrentState();
-        }
-    }
-
-    private void DisableAllButtons()
-    {
-        foreach (NumberButton button in numberButtons)
-        {
-            button.DisableButton(currentValue);
-        }
     }
 
     public void ResetPuzzle()
@@ -80,9 +61,6 @@ public class NumberPuzzleManager : MonoBehaviour
         currentValueText.text = currentValue.ToString();
         solutionText.text = solution.ToString();
 
-        foreach (NumberButton button in numberButtons)
-        {
-            button.ResetButton();
-        }
+        nbManager.ResetButtons();
     }
 }

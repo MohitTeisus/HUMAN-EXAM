@@ -47,6 +47,10 @@ public class FriendlyRobot : MonoBehaviour
         {
             ChangeState(new RobotDeactivatedState(this));
         }
+        else
+        {
+            ChangeState(new RobotDefaultState(this));
+        }
     }
 
     public bool GetActivity()

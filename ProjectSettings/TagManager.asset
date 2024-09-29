@@ -10,6 +10,7 @@ TagManager:
   - Bullet
   - RobotPickable
   - RobotDelivery
+  - Robot
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - RocketDestroyable
   - Selectable
   - Pickable
-  - 
+  - FriendlyRobot
   - 
   - 
   - 

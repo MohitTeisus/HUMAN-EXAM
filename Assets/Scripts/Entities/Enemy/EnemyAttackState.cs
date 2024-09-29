@@ -2,50 +2,55 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFollowState : EnemyState
+public class EnemyAttackState : EnemyState
 {
     float distanceToPlayer;
+    Health playerHealth;
 
-    public EnemyFollowState(EnemyController enemy) : base(enemy)
+    public EnemyAttackState(EnemyStateController enemy) : base(enemy)
     {
-
+        playerHealth = base.enemy.player.GetComponent<Health>();
     }
 
     public override void OnStateEnter()
     {
-        Debug.Log("Enemy will start following the player");
+        Debug.Log("Enemy will attack the Player");
     }
 
     public override void OnStateExit()
     {
-        Debug.Log("Enemy will stop following the player");
+        Debug.Log("Enemy will stop attacking the player");
     }
 
     public override void OnStateUpdate()
     {
+        Attack();
+
         if (enemy.player != null)
         {
             distanceToPlayer = Vector3.Distance(enemy.transform.position, enemy.player.position);
 
-            if (distanceToPlayer > 10)
+            if (distanceToPlayer > 3)
             {
-                //Going back to Idle
-                enemy.ChangeState(new EnemyIdleState(enemy));
+                //Going to follow state
+                enemy.ChangeState(new EnemyFollowState(enemy));
             }
 
-            //Set attack
-            if (distanceToPlayer < 3)
-            {
-                //Going to attack state
-                enemy.ChangeState(new EnemyAttackState(enemy));
-            }
-
+            
             enemy.agent.destination = enemy.player.position;
         }
         else
         {
             //Going back to Idle
             enemy.ChangeState(new EnemyIdleState(enemy));
+        }
+    }
+
+    void Attack()
+    {
+        if (playerHealth != null)
+        {
+            playerHealth.DeductHealth(enemy.damagePerSecond * Time.deltaTime);
         }
     }
 }

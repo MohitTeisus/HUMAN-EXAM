@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+public class OldEnemy : MonoBehaviour
 {
     [SerializeField] private Transform[] targetPoints;
     [SerializeField] private Transform enemyEye;

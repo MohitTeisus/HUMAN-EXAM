@@ -4,9 +4,9 @@ using UnityEngine;
 
 public abstract class EnemyState : BaseState
 {
-    protected EnemyController enemy;
+    protected EnemyStateController enemy;
 
-    public EnemyState(EnemyController _enemy)
+    public EnemyState(EnemyStateController _enemy)
     {
         this.enemy = _enemy;
     }

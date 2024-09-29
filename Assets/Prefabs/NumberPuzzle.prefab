@@ -326,7 +326,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8429012624834963738}
-  - component: {fileID: 551711334873969982}
+  - component: {fileID: 6604629078015905337}
+  - component: {fileID: 8893348820955467116}
   m_Layer: 0
   m_Name: NumberPuzzle
   m_TagString: Untagged
@@ -353,7 +354,7 @@ Transform:
   - {fileID: 3849848865408895790}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &551711334873969982
+--- !u!114 &6604629078015905337
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -362,14 +363,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 1728204752229772759}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e45f9594fd274024b8ca8c34f7252829, type: 3}
+  m_Script: {fileID: 11500000, guid: 15bb91b3b077a454f9ccb62fd36767a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   solutionText: {fileID: 6626813531725130979}
   currentValueText: {fileID: 1718267413084612554}
-  minSolution: 10
-  maxSolution: 15
+  minSolution: 0
+  maxSolution: 0
   currentValue: 0
+  nbManager: {fileID: 8893348820955467116}
+  puzzleComplete:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &8893348820955467116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728204752229772759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c2b3bb63de00240ba4b581d458155d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   numberButtons:
   - {fileID: 4407517859772434415}
   - {fileID: 6098601415646865788}
@@ -380,33 +397,6 @@ MonoBehaviour:
   - {fileID: 7346881430937265002}
   - {fileID: 7479002891431277339}
   - {fileID: 96235410330387525}
-  puzzleComplete:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MoveableScreen, Assembly-CSharp
-        m_MethodName: StartMoveScreen
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 681754788013879936}
-        m_TargetAssemblyTypeName: PushButton, Assembly-CSharp
-        m_MethodName: DisableButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &2590930770035838812
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,7 +689,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 1
   currentValue: 0
-  manager: {fileID: 551711334873969982}
+  manager: {fileID: 6604629078015905337}
   meshRenderer: {fileID: 4878105865519781894}
   addMat: {fileID: 2100000, guid: 565a5e0c660f94b91acaf046e49dfee9, type: 2}
   subMat: {fileID: 2100000, guid: 9270dee59e225bf40bd026e7a39ba00d, type: 2}
@@ -826,7 +816,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 5
   currentValue: 0
-  manager: {fileID: 551711334873969982}
+  manager: {fileID: 6604629078015905337}
   meshRenderer: {fileID: 7435906898083602670}
   addMat: {fileID: 2100000, guid: 565a5e0c660f94b91acaf046e49dfee9, type: 2}
   subMat: {fileID: 2100000, guid: 9270dee59e225bf40bd026e7a39ba00d, type: 2}
@@ -953,7 +943,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 9
   currentValue: 0
-  manager: {fileID: 551711334873969982}
+  manager: {fileID: 6604629078015905337}
   meshRenderer: {fileID: 2340780897382397019}
   addMat: {fileID: 2100000, guid: 565a5e0c660f94b91acaf046e49dfee9, type: 2}
   subMat: {fileID: 2100000, guid: 9270dee59e225bf40bd026e7a39ba00d, type: 2}
@@ -1422,7 +1412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 7
   currentValue: 0
-  manager: {fileID: 551711334873969982}
+  manager: {fileID: 6604629078015905337}
   meshRenderer: {fileID: 7775458714083055310}
   addMat: {fileID: 2100000, guid: 565a5e0c660f94b91acaf046e49dfee9, type: 2}
   subMat: {fileID: 2100000, guid: 9270dee59e225bf40bd026e7a39ba00d, type: 2}
@@ -1549,7 +1539,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 2
   currentValue: 0
-  manager: {fileID: 551711334873969982}
+  manager: {fileID: 6604629078015905337}
   meshRenderer: {fileID: 2473974033821005177}
   addMat: {fileID: 2100000, guid: 565a5e0c660f94b91acaf046e49dfee9, type: 2}
   subMat: {fileID: 2100000, guid: 9270dee59e225bf40bd026e7a39ba00d, type: 2}
@@ -2360,7 +2350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 3
   currentValue: 0
-  manager: {fileID: 551711334873969982}
+  manager: {fileID: 6604629078015905337}
   meshRenderer: {fileID: 4774274675085642599}
   addMat: {fileID: 2100000, guid: 565a5e0c660f94b91acaf046e49dfee9, type: 2}
   subMat: {fileID: 2100000, guid: 9270dee59e225bf40bd026e7a39ba00d, type: 2}
@@ -2764,7 +2754,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 6
   currentValue: 0
-  manager: {fileID: 551711334873969982}
+  manager: {fileID: 6604629078015905337}
   meshRenderer: {fileID: 8852849479483463381}
   addMat: {fileID: 2100000, guid: 565a5e0c660f94b91acaf046e49dfee9, type: 2}
   subMat: {fileID: 2100000, guid: 9270dee59e225bf40bd026e7a39ba00d, type: 2}
@@ -3062,7 +3052,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 8
   currentValue: 0
-  manager: {fileID: 551711334873969982}
+  manager: {fileID: 6604629078015905337}
   meshRenderer: {fileID: 2956990938864270104}
   addMat: {fileID: 2100000, guid: 565a5e0c660f94b91acaf046e49dfee9, type: 2}
   subMat: {fileID: 2100000, guid: 9270dee59e225bf40bd026e7a39ba00d, type: 2}
@@ -3360,7 +3350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 4
   currentValue: 0
-  manager: {fileID: 551711334873969982}
+  manager: {fileID: 6604629078015905337}
   meshRenderer: {fileID: 9114453801266380790}
   addMat: {fileID: 2100000, guid: 565a5e0c660f94b91acaf046e49dfee9, type: 2}
   subMat: {fileID: 2100000, guid: 9270dee59e225bf40bd026e7a39ba00d, type: 2}
@@ -3395,7 +3385,7 @@ PrefabInstance:
         type: 3}
       propertyPath: onPush.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 551711334873969982}
+      objectReference: {fileID: 6604629078015905337}
     - target: {fileID: 6767272750701600433, guid: 36a04197506d4344c9fb922a5f41cba9,
         type: 3}
       propertyPath: onPush.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -3404,7 +3394,7 @@ PrefabInstance:
     - target: {fileID: 6767272750701600433, guid: 36a04197506d4344c9fb922a5f41cba9,
         type: 3}
       propertyPath: onPush.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: NumberPuzzleManager, Assembly-CSharp
+      value: NumberPuzzle, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7057514231089964831, guid: 36a04197506d4344c9fb922a5f41cba9,
         type: 3}
@@ -3466,18 +3456,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36a04197506d4344c9fb922a5f41cba9, type: 3}
---- !u!114 &681754788013879936 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6767272750701600433, guid: 36a04197506d4344c9fb922a5f41cba9,
-    type: 3}
-  m_PrefabInstance: {fileID: 6096812764880366641}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42cd14389d88060468c5f7f16b9f12a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &3849848865408895790 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7057514231089964831, guid: 36a04197506d4344c9fb922a5f41cba9,

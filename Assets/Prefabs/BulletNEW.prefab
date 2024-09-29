@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pooledOBJ: {fileID: -1390708754848234421}
+  damage: 20
 --- !u!114 &-1390708754848234421
 MonoBehaviour:
   m_ObjectHideFlags: 0

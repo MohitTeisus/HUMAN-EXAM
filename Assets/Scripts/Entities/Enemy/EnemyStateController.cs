@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyController : MonoBehaviour
+public class EnemyStateController : MonoBehaviour
 {
     private EnemyState currentState;
 
@@ -11,13 +11,13 @@ public class EnemyController : MonoBehaviour
     public Transform enemyEye;
     public float playerCheckDistance;
     public float checkRadius = .8f;
+    public float damagePerSecond;
 
     //int currentTarget = 0;
 
     public NavMeshAgent agent;
 
     [HideInInspector] public Transform player;
-
 
     // Start is called before the first frame update
     void Start()
@@ -47,5 +47,10 @@ public class EnemyController : MonoBehaviour
         Gizmos.DrawWireSphere(enemyEye.position + enemyEye.forward * playerCheckDistance, checkRadius);
 
         Gizmos.DrawLine(enemyEye.position, enemyEye.position + enemyEye.forward * playerCheckDistance);
+    }
+
+    public void AcquireTarget(Transform player)
+    {
+        this.player = player;
     }
 }

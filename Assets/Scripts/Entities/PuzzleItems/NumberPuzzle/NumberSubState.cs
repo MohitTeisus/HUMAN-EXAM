@@ -13,7 +13,7 @@ public class NumberSubState : NumberState
     public override float CompleteEquation()
     {
         dif = currentFullValue - buttonValue;
-        numberButton.DisableButton(dif);
+        numberButton.DisableButton();
         return dif;
     }
 

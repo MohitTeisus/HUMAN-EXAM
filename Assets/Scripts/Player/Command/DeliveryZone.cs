@@ -10,7 +10,9 @@ public class DeliveryZone : MonoBehaviour
     private List<GameObject> deliveredObjects = new List<GameObject>();
     private GameObject lastDeliveredItem;
 
-    public UnityEvent deliveryFulfilled; 
+    public UnityEvent deliveryFulfilled;
+
+    [SerializeField] AudioSource audioSource;
 
     private int spacesFilled = 0;
 
@@ -35,6 +37,8 @@ public class DeliveryZone : MonoBehaviour
 
         spacesFilled++;
         deliveredObjects.Add(lastDeliveredItem);
+
+        audioSource.Play();
 
         if(spacesFilled == deliveryPoints.Length)
         {

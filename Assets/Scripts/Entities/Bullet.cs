@@ -9,9 +9,6 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        //Debug.Log($"Collided with {other.gameObject.name}");
-        pooledOBJ.Destroy(1f);
-
         IDestroyable destroyable = other.gameObject.GetComponent<IDestroyable>();
         if ( destroyable != null)
         {
@@ -23,12 +20,11 @@ public class Bullet : MonoBehaviour
         {
             damageable.GetDamage(damage);
         }
+        pooledOBJ.Destroy(0.5f);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log($"Collided with {other.gameObject.name}");
-
         IShootable shootable = other.gameObject.GetComponent<IShootable>();
 
         if ( shootable != null )

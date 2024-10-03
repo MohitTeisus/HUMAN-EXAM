@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Net.WebSockets;
 using System.Runtime.CompilerServices;
 using UnityEngine;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerMoveBehaviour : MonoBehaviour
 {
@@ -12,7 +11,6 @@ public class PlayerMoveBehaviour : MonoBehaviour
 
     [Header("Player Movement")]
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float sprintMult;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float mass = 1f;
 
@@ -23,7 +21,6 @@ public class PlayerMoveBehaviour : MonoBehaviour
 
     private CharacterController characterController;
 
-    private float moveMult = 1;
     private Vector3 playerVelocity;
     public bool isGrounded {get; private set;}
 
@@ -43,8 +40,7 @@ public class PlayerMoveBehaviour : MonoBehaviour
 
     void MovePlayer()
     {
-        moveMult = input.sprintHeld ? sprintMult : 1;
-        characterController.Move((transform.forward * input.vertical + transform.right * input.horizontal) * moveSpeed * Time.deltaTime * moveMult);
+        characterController.Move((transform.forward * input.vertical + transform.right * input.horizontal) * moveSpeed * Time.deltaTime);
 
         //Groundcheck
         if (isGrounded && playerVelocity.y < 0)
@@ -69,6 +65,6 @@ public class PlayerMoveBehaviour : MonoBehaviour
 
     public float GetForwardSpeed()
     {
-        return input.vertical * moveSpeed * moveMult;
+        return input.vertical * moveSpeed;
     }
 }

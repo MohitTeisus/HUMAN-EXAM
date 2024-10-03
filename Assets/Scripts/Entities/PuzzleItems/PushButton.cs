@@ -25,7 +25,8 @@ public class PushButton : MonoBehaviour, ISelectable
 
     public void OnSelect()
     {
-        if (!isActive) return; 
+        if (!isActive) return;
+        Observer.playSound("Button");
         onPush?.Invoke();
     }
 

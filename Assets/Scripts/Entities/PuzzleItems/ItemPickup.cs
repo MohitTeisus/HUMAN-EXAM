@@ -17,6 +17,7 @@ public class ItemPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             onPickUp.Invoke();
+            Observer.playSound("ItemPickedUp");
             Destroy(gameObject);
         }
     }

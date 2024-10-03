@@ -12,40 +12,38 @@ public class Door : MonoBehaviour
     private bool isLocked = true;
     private float timer = 0;
 
-    private const float waitTime = 0.25f;
+    private const float waitTime = 0.4f;
+
+    [SerializeField] private AudioSource openAudio;
 
     private void OnTriggerEnter(Collider other)
     {
         if (!isLocked && other.CompareTag("Player"))
         {
-            //Reset the timer and also change the colour of the door
             timer = 0;
-            //doorRenderer.material = detectedDoorMaterial;
-
+            StartCoroutine(DoorAnimation());
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    IEnumerator DoorAnimation()
     {
-        if (isLocked) return;
-
-        if (!other.CompareTag("Player")) return;
-
-        timer += Time.deltaTime;
-
-        if (timer >= waitTime)
+        while (timer <= waitTime)
         {
-            timer = waitTime;
-            OpenDoor(true);
+            timer += Time.deltaTime;
+            yield return null;
         }
+            OpenDoor(true);
     }
 
     private void OnTriggerExit(Collider other)
     {
+        StopAllCoroutines();
         if (other.CompareTag("Player"))
         {
-            //doorRenderer.material = defaultDoorMaterial;
-            OpenDoor(false);
+            if(doorAnimator.GetBool("Door") == true)
+            {
+                OpenDoor(false);
+            }
         }
     }
 
@@ -61,7 +59,10 @@ public class Door : MonoBehaviour
 
     public void OpenDoor(bool doorState)
     {
-        if(!isLocked)
+        if (!isLocked)
+        {
+            openAudio.Play();
             doorAnimator.SetBool("Door", doorState);
+        }
     }
 }

@@ -8,6 +8,7 @@ public class Target : MonoBehaviour, IShootable
 {
     [SerializeField] private MeshRenderer mRenderer;
     [SerializeField] private Material defaultMaterial, hitMaterial;
+    [SerializeField] private AudioSource audioClip;
     private bool isHit;
     private float timer;
 
@@ -31,6 +32,7 @@ public class Target : MonoBehaviour, IShootable
     {    
         if (!isHit)
         {
+            audioClip.Play();
             isHit = true;
             timer = 0.5f;
 

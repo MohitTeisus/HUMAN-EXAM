@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    [SerializeField] private Enemy[] enemies;
+    [SerializeField] private EnemyController[] enemies;
 
     public void RespawnEnemies()
     {

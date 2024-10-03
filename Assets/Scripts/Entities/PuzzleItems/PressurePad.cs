@@ -25,6 +25,7 @@ public class PressurePad : MonoBehaviour
             if (collider.CompareTag(objectTag))
             {
                 OnObjectPlaced?.Invoke();
+                Observer.playSound("Button");
                 break;
             }
         }

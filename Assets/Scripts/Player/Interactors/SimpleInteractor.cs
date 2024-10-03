@@ -8,7 +8,7 @@ public class SimpleInteractor : Interactor
     [SerializeField] private Camera cam;
     [SerializeField] private LayerMask interactionLayer;
     [SerializeField] private float interactionDistance;
-    [SerializeField] private GameObject interactTxt;
+    //[SerializeField] private GameObject interactTxt;
 
     //Raycast
     private RaycastHit raycastHit;
@@ -25,7 +25,7 @@ public class SimpleInteractor : Interactor
 
             if (selectable != null)
             {
-                interactTxt.SetActive(true);
+                Observer.onInteractHover?.Invoke(true);
                 selectable.OnHoverEnter();
 
                 if (input.activatePressed)
@@ -37,7 +37,7 @@ public class SimpleInteractor : Interactor
 
         if (raycastHit.transform == null && selectable != null)
         {
-            interactTxt.SetActive(false);
+            Observer.onInteractHover?.Invoke(false);
             selectable.OnHoverExit();
             selectable = null;
         }

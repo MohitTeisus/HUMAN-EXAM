@@ -16,6 +16,9 @@ public class CommandStrategy : IEquipStrategy
 
     public void UseEquipment()
     {
+        //Plays audio
+        Observer.playSound("Command");
+
         robotCommand.Command();
     }
 }

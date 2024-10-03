@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.WebSockets;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMoveBehaviour : MonoBehaviour
@@ -13,6 +14,7 @@ public class PlayerMoveBehaviour : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float mass = 1f;
+    [SerializeField] private AudioSource footsteps;
 
     [Header("Ground Checker")]
     [SerializeField] private Transform groundCheck;
@@ -51,6 +53,16 @@ public class PlayerMoveBehaviour : MonoBehaviour
         playerVelocity.y += gravity * mass * Time.deltaTime;
 
         characterController.Move(playerVelocity * Time.deltaTime);
+
+        if (input.vertical > Mathf.Abs(0.05f) || input.horizontal > Mathf.Abs(0.05f))
+        {
+            footsteps.pitch = Random.Range(0.8f, 1.0f);
+            footsteps.Play();
+        }
+        else
+        {
+            footsteps.Pause();
+        }
     }
 
     void GroundCheck()

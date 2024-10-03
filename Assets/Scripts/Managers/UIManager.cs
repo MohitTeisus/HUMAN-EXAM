@@ -9,7 +9,6 @@ public class UIManager : MonoBehaviour
     [Header("UI Element")]
     public TMP_Text txtHealth;
     public GameObject gameOver;
-    public GameObject crosshair;
     public Image dmgedVignette;
     public GameObject interactUI;
     public GameObject pickupUI;
@@ -17,18 +16,13 @@ public class UIManager : MonoBehaviour
     public GameObject gameUI;
     public GameObject tooltipUI;
     public TMP_Text tooltipText;
+    public TMP_Text completionTimeText;
 
     float dmgVignetteTimer;
 
     float tooltipTimer;
     float tooltipTimeLimit = 5;
-    // Start is called before the first frame update
-    void Start()
-    {
-        gameOver.SetActive(false);
-        crosshair.SetActive(true);
-    }
-
+    
     private void Update()
     {
         //Slowly makes the dmg ui disappear after not being dmged
@@ -38,7 +32,7 @@ public class UIManager : MonoBehaviour
             dmgedVignette.color = new Color(1, 1, 1, dmgVignetteTimer);
         }
 
-        //Displays prompt for level completed
+        //makes prompt disappear after timer is over
         if (tooltipTimer < 0)
         {
             tooltipUI.SetActive(false);  
@@ -50,21 +44,27 @@ public class UIManager : MonoBehaviour
     }
     private void OnEnable()
     {
-        Observer.onPlayerHit += UpdateHealth;
+        Observer.UpdatePlayerHealth += UpdateHealth;
         Observer.onDeath += OnDeath;
         Observer.onInteractHover += OnInteractHover;
         Observer.onPickupHover += OnPickUpHover;
         Observer.onPause += OnPause;
+        Observer.spawnPlayer += OnRespawn;
+        Observer.tooltip += ChangeToolTip;
+        Observer.completionTime += UpdateCompletionTime;
     }
     private void OnDisable()
     {
-        Observer.onPlayerHit -= UpdateHealth;
+        Observer.UpdatePlayerHealth -= UpdateHealth;
         Observer.onDeath -= OnDeath;
         Observer.onInteractHover -= OnInteractHover;
         Observer.onPickupHover -= OnPickUpHover;
         Observer.onPause -= OnPause;
+        Observer.spawnPlayer -= OnRespawn;
+        Observer.tooltip -= ChangeToolTip;
+        Observer.completionTime -= UpdateCompletionTime;
     }
-    
+
     void UpdateHealth(float health) //Updates HP in UI
     {
         txtHealth.text = "Health : " + Mathf.Floor(health);
@@ -77,7 +77,13 @@ public class UIManager : MonoBehaviour
     void OnDeath() //When the player dies, Enables gameover UI
     {
         gameOver.SetActive(true);
-        crosshair.SetActive(false);
+        gameUI.SetActive(false);
+    }
+
+    void OnRespawn()
+    {
+        gameOver.SetActive(false);
+        gameUI.SetActive(true);
     }
 
     void OnInteractHover(bool hovered) //When the player hovers over an interactable object, a prompt appears
@@ -115,5 +121,20 @@ public class UIManager : MonoBehaviour
         tooltipTimer = tooltipTimeLimit;
         tooltipUI.SetActive(true);
         tooltipText.text = text;
+    }
+
+    public void UpdateCompletionTime(float time)
+    {
+        //formats completion time to text
+        int minutes = Mathf.FloorToInt(time / 60);
+        string minutesText = minutes.ToString();
+        if (minutes < 10)
+        {
+           minutesText  = "0" + minutes;
+        }
+
+        string secondsText = Mathf.FloorToInt(time % 60).ToString();
+
+        completionTimeText.text = "TIME = " + minutesText + ":" + secondsText; 
     }
 }

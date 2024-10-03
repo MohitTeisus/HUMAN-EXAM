@@ -16,6 +16,11 @@ public class RobotItemPickedState : RobotState
             Debug.Log($"Delivered {robot.attachedObject.name}");
             robot.ChangeState(new RobotDefaultState(robot));
         }
+
+        if (other.gameObject.CompareTag("RobotPickable"))
+        {
+            Observer.tooltip("ROBOT CAN ONLY HOLD ONE ITEM AT A TIME");
+        }
     }
 
     public override void OnStateEnter()

@@ -18,6 +18,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     public void GetDamage(float damage)
     {
+        enemyAudio.PlayHitSound();
         if (currentHealth > 0)
         {
             currentHealth -= damage;
@@ -28,8 +29,6 @@ public class EnemyHealth : MonoBehaviour, IDamageable
             currentHealth = 0;
             DestroyEnemy();
         }
-
-        enemyAudio.PlayHitSound();
         onHealthUpdate?.Invoke(damage,maxHealth);
     }
 

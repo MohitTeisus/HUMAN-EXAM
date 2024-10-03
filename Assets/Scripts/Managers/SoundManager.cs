@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    //Controls most important audio sources using the Observer design pattern
     [Header("Audio Sources")]
     [SerializeField] AudioSource playerAudio; 
     [SerializeField] AudioSource gunAudio;
+    [SerializeField] AudioSource globalAudio;
 
     [Header("Audio Clips")]
     [SerializeField] AudioClip playerDMGed;
@@ -16,15 +18,18 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioClip levelComplete;
     [SerializeField] AudioClip command;
     [SerializeField] AudioClip door;
+    [SerializeField] AudioClip typing;
 
     private void OnEnable()
     {
         Observer.playSound += PlaySound;
+        Observer.pauseSound += PauseSound;
     }
 
     private void OnDisable()
     {
         Observer.playSound -= PlaySound;
+        Observer.pauseSound -= PauseSound;
     }
 
     public void PlaySound(string sound)
@@ -50,6 +55,19 @@ public class SoundManager : MonoBehaviour
             case "Command":
                 gunAudio.pitch = Random.Range(0.8f, 1f);
                 gunAudio.PlayOneShot(command);
+                break;
+            case "Typing":
+                globalAudio.PlayOneShot(typing);
+                break;
+        }
+    }
+
+    private void PauseSound(string sound)
+    {
+        switch (sound)
+        {
+            case "Typing":
+                globalAudio.Stop();
                 break;
         }
     }

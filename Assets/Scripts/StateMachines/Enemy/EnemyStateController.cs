@@ -19,6 +19,16 @@ public class EnemyStateController : MonoBehaviour
 
     [HideInInspector] public Transform player;
 
+    private void OnEnable()
+    {
+        Observer.onDeath += RemoveTarget;
+    }
+
+    private void OnDisable()
+    {
+        Observer.onDeath -= RemoveTarget;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,5 +62,10 @@ public class EnemyStateController : MonoBehaviour
     public void AcquireTarget(Transform player)
     {
         this.player = player;
+    }
+
+    private void RemoveTarget()
+    {
+        player = null;
     }
 }

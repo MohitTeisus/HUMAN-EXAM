@@ -23,7 +23,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         ResetHealth();
-        Observer.onPlayerHit(maxHealth);
+        Observer.UpdatePlayerHealth(maxHealth);
     }
 
     public void DeductHealth(float value)
@@ -39,12 +39,14 @@ public class PlayerHealth : MonoBehaviour
             Observer.onDeath();
         }
 
-        Observer.onPlayerHit(health);
+        Observer.UpdatePlayerHealth(health);
     }
 
     private void ResetHealth()
     {
+        Debug.Log("Health Reset");
         health = maxHealth;
+        Observer.UpdatePlayerHealth(health);
         isDead = false;
     }
 }

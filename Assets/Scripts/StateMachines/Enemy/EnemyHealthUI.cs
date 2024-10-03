@@ -6,7 +6,14 @@ using UnityEngine.UI;
 public class EnemyHealthUI : MonoBehaviour
 {
     [SerializeField] private EnemyHealth health;
+    [SerializeField] private Transform healthBar;
     [SerializeField] private Image healthUI;
+
+    private void Update()
+    {
+        //makes the HP bar face the player
+        healthBar.LookAt(Camera.main.transform);
+    }
 
     private void OnEnable()
     {

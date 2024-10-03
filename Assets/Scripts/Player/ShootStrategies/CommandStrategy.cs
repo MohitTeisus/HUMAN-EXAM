@@ -18,6 +18,8 @@ public class CommandStrategy : IEquipStrategy
     {
         //Plays audio
         Observer.playSound("Command");
+        //Plays animation
+        Observer.onShoot();
 
         robotCommand.Command();
     }

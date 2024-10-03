@@ -158,6 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 1435602185065224921}
+  healthBar: {fileID: 7181395046098320717}
   healthUI: {fileID: 7065250358922048566}
 --- !u!114 &-7785479781782845725
 MonoBehaviour:
@@ -312,7 +313,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7181395046098320717}
-  - {fileID: 5141893021576645361}
   m_Father: {fileID: 2345835356129370518}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 8351183988374646998}
   - component: {fileID: 6990877208062580336}
   m_Layer: 0
-  m_Name: HealthBar (1)
+  m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -412,7 +412,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.018310664, y: 0.0035708996, z: 0.01470535}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5141893021576645361}
   m_Father: {fileID: 200466034133508203}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -719,7 +720,7 @@ GameObject:
   - component: {fileID: 129666112654605488}
   - component: {fileID: 7065250358922048566}
   m_Layer: 0
-  m_Name: HealthBar
+  m_Name: HealthUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -733,11 +734,11 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7933061146455887328}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.017239995, y: 0.0029245699, z: 0.012043694}
+  m_LocalPosition: {x: 0, y: 0, z: -0.000024981644}
+  m_LocalScale: {x: 0.9415274, y: 0.81900084, z: 0.81900096}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 200466034133508203}
+  m_Father: {fileID: 7181395046098320717}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

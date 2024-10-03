@@ -24,13 +24,15 @@ public class BulletShootStrategy : IEquipStrategy
 
         //PlaysAudio
         Observer.playSound("Gun");
+        //PlaysAnimation
+        Observer.onShoot();
 
         Rigidbody bullet = pooledObj.GetComponent<Rigidbody>();
 
         bullet.transform.position = shootPoint.position;
         bullet.transform.rotation = shootPoint.rotation;
 
-        bullet.velocity = shootPoint.forward * interactor.GetShootVelocity() + new Vector3 (Random.Range(0,1f), Random.Range(0, 1f), 0);
+        bullet.velocity = shootPoint.forward * interactor.GetShootVelocity();
 
         interactor.bulletPool.DestroyPooledObjects(pooledObj, 5);
     }

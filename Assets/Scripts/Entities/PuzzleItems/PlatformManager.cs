@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlatformManager : MonoBehaviour
 {
+    //Controls all associated Platforms
     [SerializeField] private Platform[] platforms;
 
     public void ToggleAllPlatform()

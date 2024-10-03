@@ -12,7 +12,7 @@ public class PressurePad : MonoBehaviour
     public UnityEvent OnObjectPlaced;
     public UnityEvent OnObjectRemoved;
 
-    public string objectTag;
+    public string objectTag; //Change which object is required to activated pressure pad
 
     private void OnTriggerEnter(Collider other)
     {
@@ -38,30 +38,4 @@ public class PressurePad : MonoBehaviour
             OnObjectRemoved?.Invoke();
         }
     }
-
-    /* private void OnCollisionEnter(Collision collision)
-     { 
-         //Check if the collider of the cube is close enough to the center of the pressure pad
-         Collider[] hitColliders = Physics.OverlapSphere(transform.position, checkRadius, pickupLayer);
-
-         foreach (var collider in hitColliders)
-         {
-             Debug.Log("Collider in contact = " + collider.gameObject.name);
-
-             if (collider.CompareTag("PickCube") || collider.CompareTag("Player"))
-             {
-                 OnCubePlaced?.Invoke();
-                 break;
-             }
-         }
-     }*/
-/*
-    public void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("PickCube") || collision.gameObject.CompareTag("Player"))
-        {
-            OnCubeRemoved?.Invoke();
-        }
-    }*/
-
 }

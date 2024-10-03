@@ -55,12 +55,14 @@ public class PlayerInput : MonoBehaviour
     {
         Observer.onPause += PauseInputs;
         Observer.onDeath += OnDeath;
+        Observer.spawnPlayer += Respawn;
     }
 
     private void OnDisable()
     {
         Observer.onPause -= PauseInputs;
         Observer.onDeath -= OnDeath;
+        Observer.spawnPlayer -= Respawn;
     }
 
     // Update is called once per frame

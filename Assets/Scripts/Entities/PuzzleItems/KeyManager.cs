@@ -16,6 +16,7 @@ public class KeyManager : MonoBehaviour
         CheckKeys();
     }
 
+    //Checks if all Keys have been collected in the level
     private void CheckKeys()
     {
         if(keysCollected == keysRequired)

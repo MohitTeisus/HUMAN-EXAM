@@ -27,6 +27,7 @@ public class ItemPickup : MonoBehaviour
         PullTowardPlayer();
     }
 
+    //When the Player gets close to the item, the items pulls towards the player
     private void PullTowardPlayer()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, pickupRadius, playerLayer);

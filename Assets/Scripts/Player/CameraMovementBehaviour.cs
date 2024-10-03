@@ -18,12 +18,14 @@ public class CameraMovementBehaviour : MonoBehaviour
     {
         Observer.onPause += OnGamePause;
         Observer.onDeath += EnableCursor;
+        Observer.spawnPlayer += DisableCursor;
     }
 
     private void OnDisable()
     {
         Observer.onPause -= OnGamePause;
         Observer.onDeath -= EnableCursor;
+        Observer.spawnPlayer -= DisableCursor;
     }
 
     // Start is called before the first frame update

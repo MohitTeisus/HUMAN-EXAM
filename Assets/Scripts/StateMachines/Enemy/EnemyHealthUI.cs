@@ -9,9 +9,11 @@ public class EnemyHealthUI : MonoBehaviour
     [SerializeField] private Transform healthBar;
     [SerializeField] private Image healthUI;
 
-    private void Update()
+    private void FixedUpdate()
     {
         //makes the HP bar face the player
+        if(Camera.main == null) return;
+
         healthBar.LookAt(Camera.main.transform);
     }
 

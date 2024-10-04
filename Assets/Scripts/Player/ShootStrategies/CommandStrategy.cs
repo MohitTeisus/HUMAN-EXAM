@@ -21,6 +21,6 @@ public class CommandStrategy : IEquipStrategy
         //Plays animation
         Observer.onShoot();
 
-        robotCommand.Command();
+        robotCommand.Command(interactor.commandPool);
     }
 }

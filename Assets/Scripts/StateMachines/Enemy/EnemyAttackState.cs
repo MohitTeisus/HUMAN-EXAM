@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyAttackState : EnemyState
 {
@@ -36,8 +37,15 @@ public class EnemyAttackState : EnemyState
                 enemy.ChangeState(new EnemyFollowState(enemy));
             }
 
-            
-            enemy.agent.destination = enemy.player.position;
+            //if the enemy is close enough to the player it will stop moving, to prevent the enemy from pushing the player
+            if(distanceToPlayer < 2)
+            {
+                enemy.agent.destination = enemy.transform.position;
+            }
+            else
+            {
+                enemy.agent.destination = enemy.player.position;
+            }
         }
         else
         {

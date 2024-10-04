@@ -36,6 +36,7 @@ public class PlayerHealth : MonoBehaviour
         {
             isDead = true;
             health = 0;
+            Observer.playSound("PlayerDeath");
             Observer.onDeath();
         }
 

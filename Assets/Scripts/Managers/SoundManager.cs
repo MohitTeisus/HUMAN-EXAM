@@ -11,7 +11,6 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioSource globalAudio;
 
     [Header("Audio Clips")]
-    [SerializeField] AudioClip playerDMGed;
     [SerializeField] AudioClip gunShot;
     [SerializeField] AudioClip buttonPressed;
     [SerializeField] AudioClip itemPickedUp;
@@ -19,6 +18,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioClip command;
     [SerializeField] AudioClip door;
     [SerializeField] AudioClip typing;
+    [SerializeField] AudioClip playerDeath;
 
     private void OnEnable()
     {
@@ -36,14 +36,14 @@ public class SoundManager : MonoBehaviour
     {
         playerAudio.pitch = 1; //Changes pitch back to default before any sound is played
         gunAudio.pitch = 1;
+
+        globalAudio.loop = false;
         switch (sound)
         {
             case "Gun":
                 gunAudio.pitch = Random.Range(0.7f, 1f); //Changes pitch of gun sounds slightly so its less monotonous
                 gunAudio.PlayOneShot(gunShot);
                 break;
-            case "PlayerDamaged":
-                playerAudio.PlayOneShot(playerDMGed); break;
             case "Button":
                 playerAudio.pitch = Random.Range(0.9f, 1f); //Changes pitch of gun sounds slightly so its less monotonous
                 playerAudio.PlayOneShot(buttonPressed);
@@ -57,7 +57,11 @@ public class SoundManager : MonoBehaviour
                 gunAudio.PlayOneShot(command);
                 break;
             case "Typing":
+                globalAudio.loop = true;
                 globalAudio.PlayOneShot(typing);
+                break;
+            case "PlayerDeath":
+                globalAudio.PlayOneShot(playerDeath);
                 break;
         }
     }

@@ -128,12 +128,11 @@ public class UIManager : MonoBehaviour
         //formats completion time to text
         int minutes = Mathf.FloorToInt(time / 60);
         string minutesText = minutes.ToString();
-        if (minutes < 10)
-        {
-           minutesText  = "0" + minutes;
-        }
+        if (minutes < 10) minutesText = "0" + minutes;
 
-        string secondsText = Mathf.FloorToInt(time % 60).ToString();
+        int seconds = Mathf.FloorToInt(time % 60);
+        string secondsText = seconds.ToString();
+        if (seconds < 10) secondsText = "0" + seconds;
 
         completionTimeText.text = "TIME = " + minutesText + ":" + secondsText; 
     }

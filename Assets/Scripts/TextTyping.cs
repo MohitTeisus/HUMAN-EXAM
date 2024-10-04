@@ -27,7 +27,6 @@ public class TextTyping : MonoBehaviour
         Observer.playSound("Typing");
         while (currentVisibleCharacters < MaxTextCharacters)
         {
-            Debug.Log("Hi");
             textBox.maxVisibleCharacters++;
             currentVisibleCharacters++;
             yield return new WaitForSeconds(typingDelay);

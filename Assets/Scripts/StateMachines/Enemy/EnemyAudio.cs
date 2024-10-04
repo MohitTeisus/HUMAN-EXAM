@@ -9,6 +9,7 @@ public class EnemyAudio : MonoBehaviour
 
     public void PlayHitSound()
     {
+        if (!audioSource.enabled) return;
         audioSource.pitch = Random.Range(0.8f, 1.0f);
         audioSource.PlayOneShot(dmgSFX);
     }

@@ -418,8 +418,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultColour: {fileID: 2100000, guid: 5cf50b24110d77e42955e604cd8fe802, type: 2}
   hoverColour: {fileID: 2100000, guid: 3594cafb4a09f4f069de353b9942ed05, type: 2}
+  disabledColour: {fileID: 2100000, guid: bd70145708a27471bbf6560b41ba5003, type: 2}
   buttonRenderer: {fileID: 1394566191380384038}
-  interactText: {fileID: 0}
   onPush:
     m_PersistentCalls:
       m_Calls:
@@ -434,36 +434,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-  onHoverEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  onHoverExit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
 --- !u!4 &6794923265606065343 stripped
 Transform:

@@ -5,29 +5,40 @@ using UnityEngine.Events;
 
 public class PushButton : MonoBehaviour, ISelectable
 {
-    [SerializeField] private Material defaultColour, hoverColour;
+    [SerializeField] private Material defaultColour, hoverColour, disabledColour;
     [SerializeField] private MeshRenderer buttonRenderer;
-    [SerializeField] private GameObject interactText;
 
+    private bool isActive = true;
     public UnityEvent onPush;
-    
-    //public UnityEvent onHoverEnter, onHoverExit;
 
     public void OnHoverEnter()
     {
+        if (!isActive) return;
         buttonRenderer.material = hoverColour;
-        //onHoverEnter?.Invoke();
     }
 
     public void OnHoverExit()
     {
+        if (!isActive) return;
         buttonRenderer.material = defaultColour;
-        //onHoverExit?.Invoke();
     }
 
     public void OnSelect()
     {
+        if (!isActive) return;
+        Observer.playSound("Button");
         onPush?.Invoke();
     }
 
+    public void DisableButton()
+    {
+        isActive = false;
+        buttonRenderer.material = disabledColour;
+    }
+
+    public void EnableButton()
+    {
+        isActive = true;
+        buttonRenderer.material = defaultColour;
+    }
 }

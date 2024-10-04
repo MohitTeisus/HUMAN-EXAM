@@ -285,6 +285,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  player: {fileID: 0}
 --- !u!135 &5381736649982377748
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -304,7 +308,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.8224392
+  m_Radius: 0.3
   m_Center: {x: -0.00715065, y: 0, z: 0}
 --- !u!1 &5386829918907087302
 GameObject:

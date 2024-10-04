@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class MoveableScreen : MonoBehaviour
 {
     private Vector3 startPoint, endPoint;
     
     [SerializeField] private float speed;
-    [SerializeField] private float horizontalDistance;
-    [SerializeField] private float verticalDistance;
+    [SerializeField] private float horizontalDistance; //Change if want to move screen horizontally
+    [SerializeField] private float verticalDistance; //Change if want to move screen vertically
     private float timer;
     [SerializeField] private bool isOpen;
 

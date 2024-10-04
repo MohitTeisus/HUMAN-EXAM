@@ -22,15 +22,17 @@ public class BulletShootStrategy : IEquipStrategy
         PooledObjects pooledObj = interactor.bulletPool.GetPooledObjects();
         pooledObj.gameObject.SetActive(true);
 
-        //Rigidbody bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
+        //PlaysAudio
+        Observer.playSound("Gun");
+        //PlaysAnimation
+        Observer.onShoot();
+
         Rigidbody bullet = pooledObj.GetComponent<Rigidbody>();
 
         bullet.transform.position = shootPoint.position;
         bullet.transform.rotation = shootPoint.rotation;
 
-        bullet.velocity = shootPoint.forward * interactor.GetShootVelocity() + new Vector3 (Random.Range(0,1f), Random.Range(0, 1f), 0);
-
-        //Destroy(bullet.gameObject, 5f);
+        bullet.velocity = shootPoint.forward * interactor.GetShootVelocity();
 
         interactor.bulletPool.DestroyPooledObjects(pooledObj, 5);
     }

@@ -20,7 +20,7 @@ public class RobotCommand : MonoBehaviour
         ProcessCommands();
     }
 
-    public void Command()
+    public void Command(ObjectPool targetPointPool)
     {
         if(robot == null) return;
         if (!robot.GetActivity()) return;
@@ -30,11 +30,11 @@ public class RobotCommand : MonoBehaviour
         {
             if (hitInfo.transform.CompareTag("Ground"))
             {
-                GameObject pointer = Instantiate(pointerPrefab);
+                PooledObjects pointer = targetPointPool.GetPooledObjects();
                 pointer.transform.position = hitInfo.point;
 
                 commands.Enqueue(new MoveCommand(robot.agent, hitInfo.point));
-                Destroy(pointer, 5f);
+                pointer.Destroy(5f);
             }
             else if (hitInfo.transform.CompareTag("Builder"))
             {
@@ -61,6 +61,10 @@ public class RobotCommand : MonoBehaviour
 
     public void RemoveRobot()
     {
+        commands.Clear();
+        currentCommand = null;
+
+        Debug.Log("After clear = " + commands.Count);
         if (robot == null) return;
         robot = null;   
     }

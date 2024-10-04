@@ -1,20 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private LevelManager[] levels;
+    [SerializeField] private LevelManager[] levels;  
 
     public static GameManager instance;
 
+    private string gameScene;
     private GameState currentState;
-    private LevelManager currentLevel;                                                            
+    private LevelManager currentLevel;
     private int currentLevelIndex = 0;
-
 
     public enum GameState
     {
+        MainMenu,
         Breifing,
         LevelStart,
         LevelIn,
@@ -35,12 +37,21 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        if (levels.Length > 0)
-        {
-            ChangeState(GameState.Breifing, levels[currentLevelIndex]);
-        }    
+        gameScene = SceneManager.GetActiveScene().name;
+        ReturnToMainMenu();
     }
 
+    private void OnEnable()
+    {
+        Observer.onPause += PauseGame;    
+    }
+
+    private void OnDisable()
+    {
+        Observer.onPause -= PauseGame;
+    }
+
+    //Changes levels
     public void ChangeState(GameState state, LevelManager level)
     {
         currentState = state;
@@ -48,6 +59,8 @@ public class GameManager : MonoBehaviour
 
         switch (currentState)
         {
+            case GameState.MainMenu:
+                MainMenu(); break;  
             case GameState.Breifing:
                 StartBriefing();
                 break;
@@ -69,6 +82,12 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    private void MainMenu()
+    {
+        PlayerManager.instance.ReturnToSpawn();
+        ChangeState(GameState.LevelStart, currentLevel);
     }
 
     private void StartBriefing()
@@ -107,5 +126,29 @@ public class GameManager : MonoBehaviour
     private void GameEnd()
     {
         Debug.Log("Game end, you win!");
+    }
+
+    private void PauseGame(bool pause)
+    {
+        if (pause == true)
+        {
+            Time.timeScale = 0.01f;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+    }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(gameScene);
+    }
+
+    public void ReturnToMainMenu()
+    {
+        currentLevelIndex = 0;
+        ChangeState(GameState.MainMenu, levels[0]);
     }
 }

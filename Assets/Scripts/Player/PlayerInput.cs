@@ -14,15 +14,11 @@ public class PlayerInput : MonoBehaviour
 
     public float mouseY { get; private set; }
 
-    public bool sprintHeld { get; private set; }
-
     public bool jumpPressed { get; private set; }
 
     public bool activatePressed { get; private set; }
 
     public bool primaryShootPressed { get; private set; }
-
-    public bool secondaryShootPressed { get; private set; }
 
     public bool weapon1pressed { get; private set; }
 
@@ -30,9 +26,12 @@ public class PlayerInput : MonoBehaviour
 
     public bool weapon3pressed { get; private set; }
 
-    public bool commandPressed { get; private set; }
+    public bool pausePressed {  get; private set; }
 
     private bool clear;
+
+    private bool isPaused;
+    private bool isDead;
 
     //Singleton
     private static PlayerInput instance;
@@ -52,11 +51,18 @@ public class PlayerInput : MonoBehaviour
         return instance;
     }
 
-
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        
+        Observer.onPause += PauseInputs;
+        Observer.onDeath += OnDeath;
+        Observer.spawnPlayer += Respawn;
+    }
+
+    private void OnDisable()
+    {
+        Observer.onPause -= PauseInputs;
+        Observer.onDeath -= OnDeath;
+        Observer.spawnPlayer -= Respawn;
     }
 
     // Update is called once per frame
@@ -68,23 +74,25 @@ public class PlayerInput : MonoBehaviour
 
     void ProcessInputs()
     {
+        if (isDead) return;
+
+        pausePressed = Input.GetButtonDown("Pause");
+
+        if (isPaused) return;
+
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         mouseX = Input.GetAxis("Mouse X");
         mouseY = Input.GetAxis("Mouse Y");
 
-        sprintHeld = sprintHeld || Input.GetButton("Sprint");
         jumpPressed = jumpPressed || Input.GetButtonDown("Jump");
         activatePressed = activatePressed || Input.GetKeyDown(KeyCode.E);
 
         primaryShootPressed = primaryShootPressed || Input.GetButtonDown("Fire1");
-        secondaryShootPressed = secondaryShootPressed || Input.GetButtonDown("Fire2");
 
         weapon1pressed = weapon1pressed || Input.GetKeyDown(KeyCode.Alpha1);
         weapon2pressed = weapon2pressed || Input.GetKeyDown(KeyCode.Alpha2);
         weapon3pressed = weapon3pressed || Input.GetKeyDown(KeyCode.Alpha3);
-
-        commandPressed = commandPressed || Input.GetKeyDown(KeyCode.Q);
     }
 
     private void FixedUpdate()
@@ -102,17 +110,29 @@ public class PlayerInput : MonoBehaviour
         mouseX = 0;
         mouseY = 0;
 
-        sprintHeld = false;
         jumpPressed = false;
         activatePressed = false;
 
+        //pausePressed = false;
         primaryShootPressed = false;
-        secondaryShootPressed = false;
-        
-        weapon1pressed = false;
-        weapon2pressed = false; 
-        weapon3pressed = false;
 
-        commandPressed = false;
+        weapon1pressed = false;
+        weapon2pressed = false;
+        weapon3pressed = false;
+    }
+
+    void OnDeath()
+    {
+        isDead = true;
+    }
+
+    void Respawn()
+    {
+        isDead = false;
+    }
+
+    void PauseInputs(bool paused)
+    {
+        isPaused = paused;
     }
 }

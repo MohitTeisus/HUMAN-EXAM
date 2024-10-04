@@ -25,6 +25,7 @@ public class EquipInteractor : Interactor
 
     [Header("Command")]
     public RobotCommand robotCommand;
+    public ObjectPool commandPool;
 
     public override void Interact()
     {

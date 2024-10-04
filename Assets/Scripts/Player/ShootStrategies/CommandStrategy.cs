@@ -16,6 +16,11 @@ public class CommandStrategy : IEquipStrategy
 
     public void UseEquipment()
     {
-        robotCommand.Command();
+        //Plays audio
+        Observer.playSound("Command");
+        //Plays animation
+        Observer.onShoot();
+
+        robotCommand.Command(interactor.commandPool);
     }
 }

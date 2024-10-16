@@ -20,7 +20,7 @@ public class RobotCommand : MonoBehaviour
         ProcessCommands();
     }
 
-    public void Command(ObjectPool targetPointPool)
+    public void Command(ObjectPooling targetPointPool)
     {
         if(robot == null) return;
         if (!robot.GetActivity()) return;
@@ -30,7 +30,7 @@ public class RobotCommand : MonoBehaviour
         {
             if (hitInfo.transform.CompareTag("Ground"))
             {
-                PooledObjects pointer = targetPointPool.GetPooledObjects();
+                ObjectToPool pointer = targetPointPool.GetPooledObjects();
                 pointer.transform.position = hitInfo.point;
 
                 commands.Enqueue(new MoveCommand(robot.agent, hitInfo.point));

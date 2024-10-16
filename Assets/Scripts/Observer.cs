@@ -23,6 +23,8 @@ public static class Observer
 
     public static Action spawnPlayer;
 
+    public static Action<float> changeSensitivity;
+
     public static Action<string> tooltip;
 
     public static Action<float> completionTime;

@@ -19,7 +19,7 @@ public class BulletShootStrategy : IEquipStrategy
 
     public void UseEquipment()
     {
-        PooledObjects pooledObj = interactor.bulletPool.GetPooledObjects();
+        ObjectToPool pooledObj = interactor.bulletPool.GetPooledObjects();
         pooledObj.gameObject.SetActive(true);
 
         //PlaysAudio

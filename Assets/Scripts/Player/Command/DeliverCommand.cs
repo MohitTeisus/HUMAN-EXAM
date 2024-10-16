@@ -35,7 +35,7 @@ public class DeliverCommand : Command
             deliveryZone.Deliver(objToDeliver);
             return true;
         }
-        return false;
+        return true;
     }
 }
   

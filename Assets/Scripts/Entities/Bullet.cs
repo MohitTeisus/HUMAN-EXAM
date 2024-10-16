@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private PooledObjects pooledOBJ;
+    [SerializeField] private ObjectToPool pooledOBJ;
     [SerializeField] private float damage;
 
     private void OnCollisionEnter(Collision other)

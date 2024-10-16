@@ -9,6 +9,17 @@ public class PlayerTurnBehaviour : MonoBehaviour
 
     [Header("Player Turn")]
     [SerializeField] private float turnSpeed;
+    private float maxTurnspeed = 350;
+
+    private void OnEnable()
+    {
+        Observer.changeSensitivity += ChangeSensitivity;
+    }
+
+    private void OnDisable()
+    {
+        Observer.changeSensitivity -= ChangeSensitivity;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -25,5 +36,10 @@ public class PlayerTurnBehaviour : MonoBehaviour
     void RotatePlayer()
     {
         transform.Rotate(Vector3.up * turnSpeed * Time.deltaTime * input.mouseX);
+    }
+
+    void ChangeSensitivity(float multiplier)
+    {
+        turnSpeed = multiplier * maxTurnspeed;
     }
 }

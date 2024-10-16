@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7325641525603070498}
   - component: {fileID: 44482258210952338}
   - component: {fileID: 2898356668208368081}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Pressure Pad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,60 +71,13 @@ MonoBehaviour:
   pickupLayer:
     serializedVersion: 2
     m_Bits: 4096
-  OnCubePlaced:
+  OnObjectPlaced:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Door, Assembly-CSharp
-        m_MethodName: UnlockDoor
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: UNLOCKED
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnCubeRemoved:
+      m_Calls: []
+  OnObjectRemoved:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Door, Assembly-CSharp
-        m_MethodName: LockDoor
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: LOCKED
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  objectTag: 
 --- !u!1 &9110447686929301871
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,7 +89,7 @@ GameObject:
   - component: {fileID: 5888408207241576635}
   - component: {fileID: 2851438936227218548}
   - component: {fileID: 3863787428118590355}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: PressurePad
   m_TagString: Untagged
   m_Icon: {fileID: 0}

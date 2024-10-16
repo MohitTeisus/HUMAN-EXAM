@@ -10,6 +10,7 @@ public class CameraMovementBehaviour : MonoBehaviour
     [Header("Camera Turn")]
     [SerializeField] private float turnSpeed;
     [SerializeField] private bool invertMouse;
+    private float maxTurnspeed = 350;
     
     private float camXRotation;
     bool isPaused;
@@ -19,6 +20,7 @@ public class CameraMovementBehaviour : MonoBehaviour
         Observer.onPause += OnGamePause;
         Observer.onDeath += EnableCursor;
         Observer.spawnPlayer += DisableCursor;
+        Observer.changeSensitivity += ChangeSensitivity;
     }
 
     private void OnDisable()
@@ -26,6 +28,7 @@ public class CameraMovementBehaviour : MonoBehaviour
         Observer.onPause -= OnGamePause;
         Observer.onDeath -= EnableCursor;
         Observer.spawnPlayer -= DisableCursor;
+        Observer.changeSensitivity += ChangeSensitivity;
     }
 
     // Start is called before the first frame update
@@ -74,5 +77,10 @@ public class CameraMovementBehaviour : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
+
+    void ChangeSensitivity(float multiplier)
+    {
+        turnSpeed = multiplier * maxTurnspeed;
     }
 }

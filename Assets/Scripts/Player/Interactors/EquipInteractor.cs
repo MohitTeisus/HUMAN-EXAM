@@ -14,7 +14,7 @@ public class EquipInteractor : Interactor
     [SerializeField] private List<GameObject> acquiredItems = new List<GameObject>();
 
     [Header("Shoot")]
-    public ObjectPool bulletPool;
+    public ObjectPooling bulletPool;
 
     [SerializeField] private float shootForce;
     [SerializeField] private Transform shootPoint;
@@ -25,7 +25,7 @@ public class EquipInteractor : Interactor
 
     [Header("Command")]
     public RobotCommand robotCommand;
-    public ObjectPool commandPool;
+    public ObjectPooling commandPool;
 
     public override void Interact()
     {
